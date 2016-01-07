@@ -1,0 +1,23 @@
+asdadasd
+
+BodyPart messageBodyPart = new MimeBodyPart();
+
+            // Fill the message
+            messageBodyPart.setText("This is message body");
+
+            // Create a multipar message
+            Multipart multipart = new MimeMultipart();
+
+            // Set text message part
+            multipart.addBodyPart(messageBodyPart);
+
+            // Part two is attachment
+            messageBodyPart = new MimeBodyPart();
+            String filename = "file.txt";
+            DataSource source = new FileDataSource(filename);
+            messageBodyPart.setDataHandler(new DataHandler(source));
+            messageBodyPart.setFileName(filename);
+            multipart.addBodyPart(messageBodyPart);
+
+            // Send the complete message parts
+            message.setContent(multipart );
